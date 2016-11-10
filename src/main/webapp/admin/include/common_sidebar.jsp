@@ -42,7 +42,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li class="nav-item <%if(request.getHeader("Referer").contains("admin/index.html")){%>start active open<%}%>">
-                        <a href="admin/index.html" class="nav-link ">
+                        <a href="admin/index.jsp" class="nav-link ">
                             <i class="icon-bar-chart"></i>
                             <span class="title">日统计</span>
                             <span class="selected"></span>
@@ -73,7 +73,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li class="nav-item <%if(request.getHeader("Referer").contains("channel/list")){%>start active open<%}%> ">
-                        <a href="admin/channel/list.html" class="nav-link ">
+                        <a href="admin/channel/list.jsp" class="nav-link ">
                             <span class="title">查看栏目</span>
                         </a>
                     </li>

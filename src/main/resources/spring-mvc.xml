@@ -15,8 +15,8 @@
 
     <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-        <property name="prefix" value="/WEB-INF/jsp/"/>
-        <property name="suffix" value=".jsp"/>
+        <property name="prefix" value="/"/>
+        <property name="suffix" value=""/>
     </bean>
 
     <!--注解适配器,开启json数据自动转换功能 -->
