@@ -7,14 +7,14 @@
     <!--<![endif]-->
     <!-- BEGIN HEAD -->
     <head>
-        <base href="/ljgc/">
+
         <meta charset="utf-8" />
         <title>Metronic | Dashboard</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="" name="description" />
         <meta content="" name="author" />
-
+        <base href="<%=request.getContextPath()%>/">
         <jsp:include page="include/common_css.html"/>
         <jsp:include page="include/common_js.html"/>
          </head>
@@ -22,15 +22,7 @@
 
     <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
         <!-- BEGIN HEADER-->
-        <script type="text/javascript">
-            $.ajax({
-                type: "get",
-                url: "admin/include/common_head.html",
-                success: function(msg){
-                    $("div .clearfix").before(msg);
-                }
-            });
-        </script>
+        <jsp:include page="include/common_head.jsp"/>
 
         <!-- END HEADER -->
         <!-- BEGIN HEADER & CONTENT DIVIDER -->
@@ -38,6 +30,7 @@
         <!-- END HEADER & CONTENT DIVIDER -->
         <!-- BEGIN CONTAINER -->
         <div class="page-container">
+
             <!-- BEGIN SIDEBAR-->
             <script type="text/javascript">
                 $.ajax({
@@ -48,7 +41,6 @@
                     }
                 });
             </script>
-
             <!-- END SIDEBAR -->
             <!-- BEGIN CONTENT -->
             <div class="page-content-wrapper">
@@ -56,15 +48,7 @@
                 <div class="page-content">
                     <!-- BEGIN PAGE HEADER-->
                     <!-- BEGIN THEME PANEL -->
-                    <script type="text/javascript">
-                        $.ajax({
-                            type: "get",
-                            url: "admin/include/common_theme.html",
-                            success: function(msg){
-                                $("div .page-bar").before(msg);
-                            }
-                        });
-                    </script>
+                    <jsp:include page="include/common_theme.html"/>
                     <!-- END THEME PANEL -->
                     <!-- BEGIN PAGE BAR -->
                     <div class="page-bar">

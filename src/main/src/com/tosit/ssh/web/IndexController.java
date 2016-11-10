@@ -3,7 +3,6 @@ package com.tosit.ssh.web;
 import com.tosit.ssh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * 佛祖保佑       永无BUG
@@ -15,7 +14,7 @@ public class IndexController {
 //    @Qualifier("userService")
     private UserService userService;
 
-    @RequestMapping("/index")
+//    @RequestMapping("/index")
     public String index(){
         System.out.println("xxxx");
         return "index";

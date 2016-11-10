@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
@@ -18,6 +19,11 @@
     <jsp:include page="../include/common_css.html"/>
     <jsp:include page="../include/common_js.html"/>
 
+    <script type="text/javascript">
+        function goPage(pageNo){
+            location.href="ljgcadmin/channel/list?pageNo="+pageNo+"&pageSize=${page.pageSize}";
+        }
+    </script>
 </head>
 <!-- END HEAD -->
 
@@ -27,15 +33,7 @@
 
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
 <!-- BEGIN HEADER-->
-<script type="text/javascript">
-    $.ajax({
-        type: "get",
-        url: "admin/include/common_head.html",
-        success: function(msg){
-            $("div .clearfix").before(msg);
-        }
-    });
-</script>
+<jsp:include page="../include/common_head.jsp"/>
 
 <!-- END HEADER -->
 <!-- BEGIN HEADER & CONTENT DIVIDER -->
@@ -43,6 +41,7 @@
 <!-- END HEADER & CONTENT DIVIDER -->
 <!-- BEGIN CONTAINER -->
 <div class="page-container">
+    <!-- BEGIN SIDEBAR-->
     <!-- BEGIN SIDEBAR-->
     <script type="text/javascript">
         $.ajax({
@@ -54,6 +53,7 @@
         });
     </script>
 
+
     <!-- END SIDEBAR -->
     <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
@@ -61,15 +61,7 @@
         <div class="page-content">
             <!-- BEGIN PAGE HEADER-->
             <!-- BEGIN THEME PANEL -->
-            <script type="text/javascript">
-                $.ajax({
-                    type: "get",
-                    url: "admin/include/common_theme.html",
-                    success: function(msg){
-                        $("div .page-bar").before(msg);
-                    }
-                });
-            </script>
+            <jsp:include page="../include/common_theme.html"/>
             <!-- END THEME PANEL -->
 
             <!-- BEGIN PAGE BAR -->
@@ -101,16 +93,18 @@
             <!-- END PAGE HEADER-->
             <div class="clearfix"></div>
             <!-- BEGIN DASHBOARD STATS 1-->
+            <form action="ljgcadmin/channel/list" method="post">
             <div class="row">
                 <div class="col-md-3">
                     <div class="input-group input-group-lg">
-                        <input type="text" class="form-control" placeholder="输入关键字..">
+                        <input type="text" name="keyWord" class="form-control" placeholder="输入关键字..">
                                                     <span class="input-group-btn">
-                                                        <button class="btn green" type="button">搜索</button>
+                                                        <button class="btn green" type="submit">搜索</button>
                                                     </span>
                     </div>
                   </div>
             </div>
+            </form>
             <div class="row">
                 <div class="col-md-12">
                     <!-- BEGIN SAMPLE TABLE PORTLET-->
@@ -140,12 +134,13 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <c:forEach items="${page.list}" var="channel">
                                     <tr>
                                         <td class="highlight">
                                             <div class="success"></div>
-                                            <a href="javascript:;"> RedBull </a>
+                                            <a href="javascript:;"> ${channel.id} </a>
                                         </td>
-                                        <td class="hidden-xs"> Mike Nilson </td>
+                                        <td class="hidden-xs"> ${channel.name}</td>
 
                                         <td>
                                             <a href="javascript:;" class="btn btn-outline btn-circle btn-sm purple">
@@ -154,7 +149,7 @@
                                                 <i class="fa fa-trash-o"></i> Delete </a>
                                         </td>
                                     </tr>
-
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -169,13 +164,18 @@
                 <div class="col-md-7"></div>
                 <div class="col-md-5">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-default">第一页</button>
-                        <button type="button" class="btn btn-default">上一页</button>
-                        <button type="button" class="btn btn-default">下一页</button>
-                        <button type="button" class="btn btn-default">最后一页</button>
-                        <select class="form-control input-xsmall">
-                            <option>1</option>
-                            <option>2</option>
+                        <c:if test="${!page.firstPage}">
+                        <a href="ljgcadmin/channel/list?pageNo=1&pageSize=${page.pageSize}" type="button" class="btn btn-default">第一页</a>
+                         <a href="ljgcadmin/channel/list?pageNo=${page.prePage}&pageSize=${page.pageSize}" type="button" class="btn btn-default">上一页</a>
+                        </c:if>
+                        <c:if test="${!page.lastPage}">
+                        <a href="ljgcadmin/channel/list?pageNo=${page.nextPage}&pageSize=${page.pageSize}" type="button" class="btn btn-default">下一页</a>
+                        <a href="ljgcadmin/channel/list?pageNo=${page.totalPage}&pageSize=${page.pageSize}" type="button" class="btn btn-default">最后一页</a>
+                        </c:if>
+                        <select class="form-control input-xsmall" onchange="goPage(this.value)">
+                            <c:forEach begin="1" end="${page.totalPage}" var="pageNo">
+                            <option value="${pageNo}" <c:if test="${page.pageNo==pageNo}">selected</c:if> >${pageNo}</option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>

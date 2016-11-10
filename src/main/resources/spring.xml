@@ -33,7 +33,7 @@
             <value>
                 hibernate.hbm2ddl.auto=update
                 hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
-                hibernate.show_sql=false
+                hibernate.show_sql=true
                 hibernate.format_sql=true
                 hibernate.query.substitutions=true 1, false 0
                 hibernate.jdbc.batch_size=20
@@ -56,10 +56,11 @@
         <!-- the transactional semantics... -->
         <tx:attributes>
             <!-- all methods starting with 'get' are read-only -->
+
             <tx:method name="get*" read-only="true" />
             <tx:method name="list*" read-only="true" />
             <tx:method name="find*" propagation="SUPPORTS" read-only="true" />
-            <tx:method name="paged*" propagation="SUPPORTS" read-only="true" />
+            <tx:method name="query*" read-only="true" />
             <tx:method name="add*" propagation="REQUIRED" />
             <tx:method name="update*" propagation="REQUIRED" />
             <tx:method name="delete*" propagation="REQUIRED" />

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * 佛祖保佑       永无BUG
  * Created by DELL on 2016/11/10.
@@ -17,8 +19,19 @@ public class LoginController {
     private UserService userService;
 
     @RequestMapping("/login")
-    public String login(User user){
+    public String login(User user,HttpSession session){
+
         boolean isOk = userService.isOk(user);
-        return "admin/index.html";
+        if(isOk){
+            session.setAttribute("user",user);
+            return "index";
+        }
+       return "forward:../admin/login.html";
+    }
+
+    @RequestMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "forward:../admin/login.html";
     }
 }

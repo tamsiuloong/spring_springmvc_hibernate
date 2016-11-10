@@ -1,4 +1,4 @@
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="page-header navbar navbar-fixed-top">
     <!-- BEGIN HEADER INNER -->
     <div class="page-header-inner ">
@@ -307,7 +307,7 @@
                 <li class="dropdown dropdown-user">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                         <img alt="" class="img-circle" src="../assets/layouts/layout/img/avatar3_small.jpg" />
-                        <span class="username username-hide-on-mobile"> Nick </span>
+                        <span class="username username-hide-on-mobile"> ${user.username} </span>
                         <i class="fa fa-angle-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-default">
@@ -337,7 +337,7 @@
                                 <i class="icon-lock"></i> Lock Screen </a>
                         </li>
                         <li>
-                            <a href="page_user_login_1.html">
+                            <a href="ljgcadmin/logout">
                                 <i class="icon-key"></i> Log Out </a>
                         </li>
                     </ul>

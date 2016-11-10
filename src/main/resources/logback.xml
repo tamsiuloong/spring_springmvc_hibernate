@@ -9,9 +9,9 @@
 	</appender>
 	<logger name="com.tosit.ssh" level="debug" />
 	<logger name="org.springframework" level="error" />
-	<logger name="org.hibernate.type" level="error" />
+	<logger name="org.hibernate.type" level="debug" />
 	<root>
-		<level value="error" />
+		<level value="debug" />
 		<appender-ref ref="STDOUT" />
 	</root>
 </configuration>

@@ -73,7 +73,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li class="nav-item <%if(request.getHeader("Referer").contains("channel/list")){%>start active open<%}%> ">
-                        <a href="admin/channel/list.jsp" class="nav-link ">
+                        <a href="ljgcadmin/channel/list" class="nav-link ">
                             <span class="title">查看栏目</span>
                         </a>
                     </li>

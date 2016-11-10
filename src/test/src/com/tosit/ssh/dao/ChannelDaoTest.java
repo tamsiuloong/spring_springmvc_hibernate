@@ -1,6 +1,6 @@
 package com.tosit.ssh.dao;
 
-import com.tosit.ssh.entity.User;
+import com.tosit.ssh.utils.page.Pagination;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,19 +16,15 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
 @ContextConfiguration("/spring.xml")
-public class UserDaoTest {
-
+public class ChannelDaoTest {
     @Autowired
-    private UserDao userDao;
+    private ChannelDao dao;
     @Test
-    public void testQueryForPage(){
-        User _user = new User();
-        _user.setUsername("刘德华");
-        _user.setPassword("123");
+    public void testFindUserByParas(){
 
-        User user = userDao.findUserByParas(_user);
+        Pagination pagination = dao.queryForPage(null,1,10);
+        Assert.assertNotNull(pagination);
+        Assert.assertEquals(2,pagination.getList().size());
 
-        Assert.assertNotNull(user);
-        Assert.assertEquals("刘德华",user.getUsername());
     }
 }
